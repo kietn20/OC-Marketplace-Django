@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,27 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;1,700&family=Playfair:wght@300;400;700;800&family=Tsukimi+Rounded:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>{% block title %}{% endblock %} | OC Marketplace</title>
+    <style>
+        .bg {
+            aspect-ratio: 1 / auto;
+            background-image: url({% static 'images/wavyorange.svg' %});
+            background-size: cover;
+            
+        }
+        {% block style %} {% endblock %}
+    </style>
 </head>
 <body>
-    <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
-        <a href="/" class="text-xl font-semibold">OC Marketplace</a>
+    <nav class="py-4 px-6 flex justify-between items-center border-b border-gray-200">
+        <div class='flex justify-between'>
+            <a class='pr-10 mt-2' href="/"><img src='{% static 'images/orangelogo.png' %}'></a>
+            <a style="margin-top: 20px; font-size: 35px; font-weight: 700; font-family: 'PT Serif', serif;" href="/" class="text-2xl font-semibold text-orange-400">OC Marketplace</a>
+        </div>
         <div class="space-x-6">
-            <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">New item</a>
-            <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
+            <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">New item</a>
+            <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
 
                 {%  if request.user.is_authenticated %}
-                    <a href="{% url 'conversation:inbox' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
-                    <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
-                {% else %}
-                    <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
-                    <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
+                    <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'conversation:inbox' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
+                    <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
+                    <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'core:logout' %}" class="px-6 py-3 text-lg font-semibold bg-orange-400 text-white rounded-xl hover:bg-orange-500">Log out</a>
+                    {% else %}
+                    <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign up</a>
+                    <a style="font-family: 'Playfair serif', serif; font-size: 20px;" href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log in</a>
                 {% endif %}
         </div>
     </nav>
-    <div class="py-6 px-6">
+    <div class="py-6 px-6 contentbody bg">
         {% block content %}
         {% endblock %}
     </div>
@@ -33,19 +51,19 @@
         <div class="w-2/3 pr-10">
             <h3 class="mb-5 font-semibold text-gray-400">About</h3>
 
-            <p class="text-lg text-gray-500">Lorem ipsum bla bla bla. Lorem ipsum bla bla bla. Lorem ipsum bla bla bla.</p>
+            <p class="text-lg text-orange-400">OC Marketplace is a community-driven platform that connects sellers and buyers through meaningful interactions and unique goods. Sellers and buyers are welcomed to negotiate the prices of their products to satisfy each other. This platform is made exclusively for the Orange County communities. Anyone can list their items with no hidden fees. Whether you're selling or buying, you are welcome to connect and interact with each other. Happy selling or buying! - Kite</p>
         </div>
 
         <div class="w-1/3">
             <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
 
             <ul class="space-y-2">
-                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
                 <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
                 <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy policy</a></li>
                 <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Term of use</a></li>
             </ul>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

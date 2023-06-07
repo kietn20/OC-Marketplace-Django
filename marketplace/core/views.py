@@ -1,4 +1,7 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from item.models import Category, Item
 
@@ -21,7 +24,8 @@ def signup(request):
 
         if form.is_valid():
             form.save()
-
+            
+            messages.success(request, ("Thank you for signing up."))
             return redirect('/login/')
     else:
         form = SignupForm()
@@ -29,3 +33,9 @@ def signup(request):
     return render(request, 'core/signup.html', {
         'form': form
     })
+
+@login_required
+def logout_user(request):
+    logout(request)
+    messages.info(request, "You were logged out.")
+    return redirect('core:index')
