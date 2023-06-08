@@ -39,6 +39,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+from marketplace.core import apps
 
 # Application definition
 
@@ -49,7 +50,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'marketplace.core',
+    'core.apps',
+    'core.apps.CoreConfig',
+    'core.apps.AppConfig',
+    'core',
     'conversation',
     'dashboard',
     'item',
