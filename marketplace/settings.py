@@ -40,9 +40,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
-from core import apps
-import core.urls
-import core
+# from core import apps
+# import core.urls
+# import core
+# import core
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,8 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    apps,
-    core,
     'core',
     'conversation',
     'dashboard',
