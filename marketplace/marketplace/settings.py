@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'conversation',
     'dashboard',
     'item',
+    'marketplace',
 ]
 
 MIDDLEWARE = [
