@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,10 +40,6 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
-# from core import apps
-# import core.urls
-# import core
-# import core
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -99,8 +95,16 @@ WSGI_APPLICATION = 'marketplace.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     "default": dj_database_url.parse(env("DATABASE_URL"))
+# }
+
 DATABASES = {
-    'default': dj_database_url.parse(env("DATABASE_URL"))
+    'default': dj_database_url.parse(
+        env("DATABASE_URL"),
+        conn_max_age=None,
+        conn_health_checks=True,
+    )
 }
 
 
