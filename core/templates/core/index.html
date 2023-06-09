@@ -18,11 +18,8 @@
             {{ message }}
         </div>
     {% endfor %}
-    <div class="mt-6 px-6 py-8 bg-gray-100 rounded-xl indexbg border-2 border-orange-800">
-        <div class='border bg-gray-100/80 rounded-xl w-2/5 mx-auto pb-2'>
-            <h2 style="font-family: 'Playfair', serif; font-size: 45px;" class="m-auto text-center font-bold py-2">Newest Items</h2>
-        </div>
-        
+    <h2 style="font-family: 'Playfair', serif; font-size: 45px;" class="m-auto text-center font-bold py-2 text-pink-700 drop-shadow-xl underline">Newest Items</h2>
+    <div class="mt-6 px-6 pb-8 bg-gray-100 rounded-xl indexbg border-2 border-orange-800">        
         <div class="grid grid-cols-3 gap-3 pt-3">
             {% for item in items %}
                 <div class="m-auto border-solid border-violet-300 rounded-2xl border-2 drop-shadow-lg">
