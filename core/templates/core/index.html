@@ -28,6 +28,7 @@
                 <div class="m-auto border-solid border-violet-200 rounded-2xl border-2">
                     <a href="{% url 'item:detail' item.id %}">
                         <div>
+                            {{ item.image.url }}
                             <img src="{{ item.image.url }}" class="rounded-t-xl ">
                         </div>
 
