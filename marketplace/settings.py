@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'marketplace.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -115,16 +115,14 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_S3_ACCESS_KEY_ID = os.environ.get('awss3keyid')
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('awss3secretaccesskey')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('awsstoragebucketname')
-print('------------------bucket name:',AWS_STORAGE_BUCKET_NAME)
 AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = None
 AWS_S3_FILE_OVERWRITE = False
 
 AWS_S3_CUSTOM_DOMAIN =f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-print('-------------------custom domain:',AWS_S3_CUSTOM_DOMAIN)
-
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static')
 # ]
