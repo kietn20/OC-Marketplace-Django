@@ -90,16 +90,16 @@ WSGI_APPLICATION = 'marketplace.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.parse(env("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     "default": dj_database_url.parse(env("DATABASE_URL"))
+# }
 
 # DATABASES['default'] = dj_database_url.config(
 #     conn_max_age=None,
@@ -115,11 +115,13 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 AWS_S3_ACCESS_KEY_ID = os.environ.get('awss3keyid')
 AWS_S3_SECRET_ACCESS_KEY = os.environ.get('awss3secretaccesskey')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('awsstoragebucketname')
+print('------------------bucket name:',AWS_STORAGE_BUCKET_NAME)
 AWS_QUERYSTRING_AUTH = False
 AWS_DEFAULT_ACL = None
 AWS_S3_FILE_OVERWRITE = False
 
 AWS_S3_CUSTOM_DOMAIN =f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+print('-------------------custom domain:',AWS_S3_CUSTOM_DOMAIN)
 
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
@@ -129,19 +131,19 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-AWS_S3_ACCESS_KEY_ID = os.environ.get('awss3keyid')
-AWS_S3_SECRET_ACCESS_KEY = os.environ.get('awss3secretaccesskey')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('awsstoragebucketname')
-AWS_QUERYSTRING_AUTH = False
-AWS_DEFAULT_ACL = None
-AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_ACCESS_KEY_ID = os.environ.get('awss3keyid')
+# AWS_S3_SECRET_ACCESS_KEY = os.environ.get('awss3secretaccesskey')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('awsstoragebucketname')
+# AWS_QUERYSTRING_AUTH = False
+# AWS_DEFAULT_ACL = None
+# AWS_S3_FILE_OVERWRITE = False
 
 
 # Password validation
