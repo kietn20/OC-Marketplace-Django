@@ -100,6 +100,7 @@ DATABASES = {
     "default": dj_database_url.parse(env("DATABASE_URL"))
 }
 
+
 # DATABASES['default'] = dj_database_url.config(
 #     conn_max_age=None,
 #     conn_health_checks=True,
